@@ -73,6 +73,7 @@ export default class ActionSheetScreen extends Component {
           onDismiss={() => this.setState({showCustom: false})}
         />
 
+
         <ActionSheet
           title='Title'
           message='Message of action sheet'

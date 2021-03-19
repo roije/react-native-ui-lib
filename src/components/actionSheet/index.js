@@ -89,7 +89,7 @@ export default class ActionSheet extends BaseComponent {
     /**
      * Whether or not to handle SafeArea
      */
-    useSafeArea: PropTypes.bool
+    useSafeArea: PropTypes.bool,
   };
 
   constructor(props) {
@@ -187,17 +187,20 @@ export default class ActionSheet extends BaseComponent {
   }
 
   renderSheet() {
-    const {renderTitle} = this.props;
+    const {renderTitle, children} = this.props;
     const {containerStyle} = this.getThemeProps();
     return (
       <View style={[styles.sheet, containerStyle]}>
         {_.isFunction(renderTitle) ? renderTitle() : this.renderTitle()}
+
         {this.renderActions()}
+        {children}
       </View>
     );
   }
 
   render() {
+
     const {
       useNativeIOS,
       visible,
@@ -206,7 +209,7 @@ export default class ActionSheet extends BaseComponent {
       dialogStyle,
       onModalDismissed,
       testID,
-      useSafeArea
+      useSafeArea,
     } = this.getThemeProps();
 
     if (Constants.isIOS && useNativeIOS) {
@@ -229,7 +232,7 @@ export default class ActionSheet extends BaseComponent {
         onModalDismissed={onModalDismissed}
         panDirection={PanningProvider.Directions.DOWN}
       >
-        {this.renderSheet()}
+            {this.renderSheet()}
       </Dialog>
     );
   }
